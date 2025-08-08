@@ -1,1214 +1,451 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ousmane MOMBO MOMBO | Data Scientist & AI Engineer</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#2563EB',      // Professional blue (matches CV)
-                        'primary-dark': '#1E40AF', 
-                        'accent': '#10B981',       // Green for highlights
-                        'dark': '#1F2937',         // Dark text
-                        'light': '#F9FAFB'          // Light background
-                    },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
+    <title>Yann DE NZOGHE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Styles pour le menu mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .header-nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+                box-shadow: -5px 0 10px rgba(0,0,0,0.1);
+                z-index: 999;
+                padding-top: 80px;
+            }
+            
+            .header-nav ul.active {
+                right: 0;
+            }
+            
+            .header-nav li {
+                margin: 1.5rem 0;
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
             }
         }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #F9FAFB;
+        
+        /* Animation des liens */
+        @keyframes navLinkFade {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-        .profile-pic {
-            border: 4px solid #2563EB;
-            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
-        .skill-badge {
-            transition: all 0.3s ease;
-        }
-        .skill-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 2.5rem;
-            border-left: 3px solid #2563EB;
-            margin-bottom: 2rem;
-        }
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: -0.75rem;
-            top: 0;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            background: #2563EB;
-            border: 3px solid white;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .experience-card {
-            transition: all 0.3s ease;
-        }
-        .experience-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        
+        /* Compensation pour le header fixe */
+        section {
+            scroll-margin-top: 100px;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="navbar fixed top-0 left-0 right-0 z-50 bg-white shadow-lg px-6">
-        <div class="flex-1">
-            <a href="#" class="text-xl font-bold text-primary">Ousmane MOMBO MOMBO</a>
+
+    <header class="sticky-header">
+        <div class="header-container">
+            <h1 class="header-name">Yann DE NZOGHE</h1>
+
+            <!-- Menu Hamburger -->
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#profil" class="nav-link">Profil</a></li>
+                    <li><a href="#experience" class="nav-link">Expérience</a></li>
+                    <li><a href="#competences" class="nav-link">Compétences</a></li>
+                    <li><a href="#projets" class="nav-link">Projets</a></li>
+                    <li><a href="#formation" class="nav-link">Formation</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-right">
+                <select id="languageSelector" class="language-selector">
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                <img src="images/profile-pic.png" alt="Photo de profil" class="header-photo">
+            </div>
         </div>
-        <div class="flex-none hidden lg:block">
-            <ul class="menu menu-horizontal space-x-2">
-                <li><a href="#about" class="text-dark hover:text-primary font-medium">About</a></li>
-                <li><a href="#skills" class="text-dark hover:text-primary font-medium">Skills</a></li>
-                <li><a href="#experience" class="text-dark hover:text-primary font-medium">Experience</a></li>
-                <li><a href="#projects" class="text-dark hover:text-primary font-medium">Projects</a></li>
-                <li><a href="#education" class="text-dark hover:text-primary font-medium">Education</a></li>
-                <li><a href="#contact" class="text-dark hover:text-primary font-medium">Contact</a></li>
+    </header>
+
+    <main>
+        <section id="profil">
+            <img src="images/profile-pic.png" alt="Photo de Yann Noël" class="photo-profil">
+            <h2 data-i18n="welcome">Bienvenue 👋</h2>
+            <p data-i18n="intro1">Je suis Yann DE NZOGHE, étudiant en première année de Master Intelligence Artificielle et Sciences des données à Aivancity Paris-Cachan à la recherche d'une alternance.</p>
+            <p data-i18n="intro2">Si vous êtes une entreprise ambitieuse à la recherche d'un profil sachant extraire des insights précieux de leurs données, automatiser et optimiser leurs processus grâce à l’intelligence artificielle, RENCONTRONS NOUS!</p>
+        </section>
+
+       <section id="experience">
+            <h2>Expériences professionnelles</h2>
+
+            <div class="job">
+                <h3>Développeur de chatbot – <span>Atos</span></h3>
+                <p><em>Jan - Mar 2023 | Paris, France</em></p>
+                <ul>
+                    <li>Création d’un corpus multilocuteur pour un environnement universitaire</li>
+                    <li>Collecte, filtrage, catégorisation et transcription de données audio diverses</li>
+                    <li>Établissement d’un corpus entièrement documenté</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Machine Learning Développeur – <span>PITCHBOY</span></h3>
+                <p><em>Sep - Déc 2023 | Paris, France</em></p>
+                <ul>
+                    <li>Analyse des sentiments dans les interactions vidéo/textuelles avec une IA</li>
+                    <li>Transcription vidéo → texte, analyse des émotions via API, machine learning</li>
+                    <li>Déduction de métriques clés à partir des données</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Analyste de données juridiques – <span>Aivancity</span></h3>
+                <p><em>Juin - Août 2023 | Paris, France</em></p>
+                <ul>
+                    <li>Récupération et analyse de décisions juridiques via API</li>
+                    <li>Modèle ML pour classifier et extraire des informations : cour, demandeur, défendeur</li>
+                    <li>Visualisations interactives des résultats</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Consultant Data – <span>Troopy</span></h3>
+                <p><em>Oct - Déc 2022 | Paris, France</em></p>
+                <ul>
+                    <li>Analyse des trajets clients et performances de la flotte</li>
+                    <li>Optimisation de l’expérience client via des points de retrait mieux répartis</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Analyste de tendances – <span>Consult Trends</span></h3>
+                <p><em>Jan - Mar 2024 | Paris, France</em></p>
+                <ul>
+                    <li>Traitement de données mode (styles, couleurs, matériaux)</li>
+                    <li>Développement de modèles ARIMA pour la prévision de tendances</li>
+                    <li>Création de tableaux de bord interactifs (Python & Power BI)</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Stagiaire automatisation – <span>Aivancity</span></h3>
+                <p><em>Juil - Sep 2024 | Paris, France</em></p>
+                <ul>
+                    <li>Web scraping avec Python/Selenium pour automatiser les tâches back-end</li>
+                    <li>Développement d’une interface front-end avec Flask</li>
+                    <li>Mise en place d’une base de données SQL robuste (architecture 3-tiers)</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Développeur de chatbot – <span>Metapolis</span></h3>
+                <p><em>Jan - Mar 2025 | Paris, France</em></p>
+                <ul>
+                    <li>Création d’un chatbot RAG avec LangChain & LLaMA-3</li>
+                    <li>Connexion à une base Oracle pour répondre aux lycéens d’Île-de-France</li>
+                    <li>Personnalisation selon les besoins éducatifs</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>ML Développeur – <span>Images & Concept</span></h3>
+                <p><em>Oct - Déc 2024 | Paris, France</em></p>
+                <ul>
+                    <li>Création d’un système de reconnaissance d’émotions pour enfants immunodéficients</li>
+                    <li>Implémentation dans un poisson synthétique</li>
+                    <li>Soutien émotionnel via détection intelligente des émotions</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="formation">
+            <h2>Formation</h2>
+
+            <div class="diplome">
+                <h3>🎓 Master BAC +5 en Intelligence Artificielle et Sciences des données ( RNCP Niveau 7)</h3>
+                <p><strong>Aivancity School for Technology, Business & Society</strong></p>
+                <ul>
+                    <li>Diplôme en cours avec une formation approfondie en analyse de données et Intelligence Artificielle</li>
+                    <li>Projets pratiques axés sur l'analyse de données et la modélisation prédictive</li>
+                </ul>
+            </div>
+
+            <div class="diplome">
+                <h3>🎓 Baccalauréat scientifique, spécialité mathématiques et physique</h3>
+                <p><strong>Lycée Capitaine Charles NTCHORERE</strong></p>
+                <ul>
+                    <li>Mention Bien</li>
+                    <li>Projets en analyse de données et statistiques</li>
+                </ul>
+            </div>
+        </section>
+         <main>
+             
+        <section id="competences">
+            <h2>Compétences</h2>
+
+            <div class="competence-bloc">
+                <h3>🧠 Compétences en IA & Data Science</h3>
+                <ul>
+                    <li>Apprentissage automatique (Machine Learning)</li>
+                    <li>Apprentissage profond (Deep Learning)</li>
+                    <li>Traitement du langage naturel (NLP)</li>
+                    <li>Analyse de séries temporelles</li>
+                    <li>Réduction de dimensionnalité (ACP)</li>
+                    <li>Visualisation de données</li>
+                    <li>Analyse et traitement de données</li>
+                    <li>Automatisation des données</li>
+                    <li>Architecture RAG</li>
+                    <li>Déploiement de modèles</li>
+                    <li>Cloud Computing</li>
+                    <li>Big Data</li>
+                </ul>
+            </div>
+
+            <div class="competence-bloc">
+                <h3>💻 Langages & Outils</h3>
+                <ul>
+                    <li>Python, SQL, R</li>
+                    <li>Power BI, Excel, Git</li>
+                    <li>Docker, Flask, Streamlit, FastAPI</li>
+                    <li>CI/CD, MLflow, Kubernetes</li>
+                    <li>AWS, GCP</li>
+                </ul>
+            </div>
+
+            <div class="competence-bloc">
+                <h3>📚 Bibliothèques Python</h3>
+                <ul>
+                    <li>Pandas, NumPy, SciPy</li>
+                    <li>Matplotlib, Seaborn, Plotly</li>
+                    <li>Scikit-learn, Statsmodels</li>
+                    <li>TensorFlow, Keras, PyTorch</li>
+                    <li>Transformers (HuggingFace)</li>
+                    <li>OpenCV, PyQt, Kivy, pygame</li>
+                    <li>BeautifulSoup, Selenium</li>
+                </ul>
+            </div>
+
+            <div class="competence-bloc">
+                <h3>🤝 Soft Skills</h3>
+                <ul>
+                    <li>Esprit analytique, critique</li>
+                    <li>Communication orale, présentation</li>
+                    <li>Curiosité, créativité</li>
+                    <li>Esprit d’équipe, autonomie</li>
+                    <li>Rigueur, adaptabilité, flexibilité</li>
+                    <li>Éthique en IA</li>
+                </ul>
+            </div>
+
+            <div class="competence-bloc">
+                <h3>🌍 Langues</h3>
+                <ul>
+                    <li>🇫🇷 Français – C1 (langue maternelle)</li>
+                    <li>🇬🇧 Anglais – B2</li>
+                </ul>
+            </div>
+        </section>
+
+        
+        <section id="contact">
+            <h2>Télécharger mon CV</h2>
+            <p>Vous pouvez télécharger mon CV en cliquant ci-dessous :</p>
+            <a href="cv\CV-Yann-DE-NZOGHE.pdf" download class="download-btn">📄 Télécharger le CV</a>
+        </section>
+
+        <section class="contact">
+            <h2>Contact</h2>
+            <p>Tu peux me retrouver moi ainsi que mes projets sur Github et sur les réseaux  suivantes :</p>
+            <ul class="contact-links">
+                <li>
+                    <a href="https://github.com/Yannozghe" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/yann-de-nzoghe/" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </li>
             </ul>
-        </div>
-        <div class="flex-none lg:hidden">
-            <label for="mobile-menu" class="btn btn-square btn-ghost">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </label>
-        </div>
-    </div>
+        </section>
 
-    <!-- Mobile Menu -->
-    <input type="checkbox" id="mobile-menu" class="drawer-toggle">
-    <div class="drawer-side z-50">
-        <label for="mobile-menu" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 h-full bg-white text-dark">
-            <li class="mt-16 mb-4">
-                <a href="#about" class="font-medium text-lg">About</a>
-            </li>
-            <li class="mb-4">
-                <a href="#skills" class="font-medium text-lg">Skills</a>
-            </li>
-            <li class="mb-4">
-                <a href="#experience" class="font-medium text-lg">Experience</a>
-            </li>
-            <li class="mb-4">
-                <a href="#projects" class="font-medium text-lg">Projects</a>
-            </li>
-            <li class="mb-4">
-                <a href="#education" class="font-medium text-lg">Education</a>
-            </li>
-            <li class="mb-4">
-                <a href="#contact" class="font-medium text-lg">Contact</a>
-            </li>
-            <li>
-                <a href="CV_Alternance_Ousmane_MOMBO_MOMBO_Data_Scientist_v2.0.pdf" download class="btn bg-primary hover:bg-primary-dark text-white mt-4">Download CV</a>
-            </li>
-        </ul>
-    </div>
+    </main>
 
-    <!-- Hero Section -->
-    <section id="about" class="pt-24 pb-16 px-6">
-        <div class="container mx-auto">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/3 flex justify-center animate_animated animate_fadeIn">
-                    <div class="profile-pic w-64 h-64 rounded-full overflow-hidden animate-float">
-                        <img src="profile-pic.jpeg" alt="Ousmane MOMBO MOMBO" class="w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="lg:w-2/3 animate_animated animatefadeIn animate_delay-1s">
-                    <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">Ousmane MOMBO MOMBO</h1>
-                    <h2 class="text-2xl md:text-3xl text-primary mb-6">Data Scientist & AI Engineer</h2>
-                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                        👋 Hello, I'm Ousmane MOMBO MOMBO, a 3rd-year student at Aivancity School for Technology, Business & Society, enrolled in the Grande École program recognized by the French government. I'm pursuing an Advanced Degree in Artificial Intelligence and Data Science with the goal of designing innovative technological solutions that align with business strategic needs while incorporating impact, sustainability, and ethical considerations.
-                    </p>
-                    <div class="flex flex-wrap gap-4 mb-8">
-                        <a href="#contact" class="btn bg-primary hover:bg-primary-dark text-white px-8">Contact Me</a>
-                        <a href="CV_Alternance_Ousmane_MOMBO_MOMBO_Data_Scientist_v2.0.pdf" download class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-white px-8">Download CV</a>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="https://www.linkedin.com/in/ousmane-mombo-mombo/" target="_blank" class="text-primary hover:text-primary-dark transition-colors duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/OusmaneMomboMombo" target="_blank" class="text-primary hover:text-primary-dark transition-colors duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-white px-6">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Technical Skills</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Advanced Techniques -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Advanced Techniques</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge badge badge-primary badge-lg">Machine Learning</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Deep Learning</span>
-                        <span class="skill-badge badge badge-primary badge-lg">NLP</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Time Series Analysis</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Web Scraping</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Automation</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Processing</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Analysis</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Visualization</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Dimensionality Reduction</span>
-                        <span class="skill-badge badge badge-primary badge-lg">PCA</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Cloud Computing</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Big Data</span>
-                        <span class="skill-badge badge badge-primary badge-lg">RAG Architecture</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Deployment</span>
-                    </div>
-                </div>
-
-                <!-- Languages & Tools -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Languages & Tools</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge badge badge-primary badge-lg">Python</span>
-                        <span class="skill-badge badge badge-primary badge-lg">SQL</span>
-                        <span class="skill-badge badge badge-primary badge-lg">R</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Power BI</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Excel</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Git</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Pandas</span>
-                        <span class="skill-badge badge badge-primary badge-lg">NumPy</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Seaborn</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Matplotlib</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Scikit-learn</span>
-                        <span class="skill-badge badge badge-primary badge-lg">TensorFlow</span>
-                        <span class="skill-badge badge badge-primary badge-lg">PyTorch</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Transformers</span>
-                        <span class="skill-badge badge badge-primary badge-lg">SciPy</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Statsmodels</span>
-                        <span class="skill-badge badge badge-primary badge-lg">BeautifulSoup</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Selenium</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Streamlit</span>
-                    </div>
-                </div>
-                <!-- Soft Skills -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Soft Skills</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge badge badge-accent badge-lg">Analytical Mindset</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Interpersonal Skills</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Critical Thinking</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Team Spirit</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Rigor</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Autonomy</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Adaptability</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Flexibility</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Creativity</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Curiosity</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Oral Communication</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Presentation Skills</span>
-                        <span class="skill-badge badge badge-accent badge-lg">AI Ethics</span>
-                    </div>
-                </div>
-
-                <!-- Languages -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Languages</h3>
-                    <div class="flex flex-col gap-4">
-                        <div>
-                            <span class="font-medium">French: Native</span>
-                        </div>
-                        <div>
-                            <span class="font-medium">English: B2 (Intermediate)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-16 px-6 bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Professional Experience</h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <h3 class="text-2xl font-bold text-primary mb-6 pb-2 border-b-2 border-primary">Internships</h3>
-                
-                <!-- Internship 1 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Data Analyst Intern</h3>
-                    <p class="text-lg text-primary mb-2">Energie Pro Export | Jul - Sep 2024 | Louveciennes, France (Hybrid)</p>
-                    <p class="text-gray-700 mb-4">
-                        During this 9-week internship at Energie Pro Export, a SME specializing in construction materials distribution, I applied my data analysis skills to optimize commercial operations and inventory management.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Achievements:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Conducted in-depth inventory data analysis to identify overstocked or obsolete products</li>
-                        <li>Developed a predictive restocking model based on historical sales, reducing storage costs by <span class="font-semibold">10%</span></li>
-                        <li>Adjusted restocking thresholds to prevent shortages</li>
-                        <li>Created interactive dashboards in Python and Excel for real-time sales and inventory tracking</li>
-                        <li>Reduced time spent on manual data collection and analysis by <span class="font-semibold">50%</span></li>
-                        <li>Identified underperforming products to adjust sales strategies</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">Python</span>
-                        <span class="badge badge-primary badge-outline">Excel</span>
-                        <span class="badge badge-primary badge-outline">Data Analysis</span>
-                        <span class="badge badge-primary badge-outline">Power BI</span>
-                        <span class="badge badge-primary badge-outline">Power Query</span>
-                    </div>
-                </div>
-
-                <!-- Internship 2 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Junior AI Consultant Intern</h3>
-                    <p class="text-lg text-primary mb-2">Alliance Experts | Jul - Sep 2023 | Clamart, France (On-site)</p>
-                    <p class="text-gray-700 mb-4">
-                        Contributed to designing an AI project to improve automotive expertise efficiency, focusing on reducing claims processing time.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Responsibilities:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Defined key objectives including a <span class="font-semibold">30% reduction</span> in processing time</li>
-                        <li>Designed features for an intelligent virtual assistant</li>
-                        <li>Identified essential AI functional requirements for the project</li>
-                        <li>Analyzed data and optimized business processes</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">AI Consulting</span>
-                        <span class="badge badge-primary badge-outline">Process Optimization</span>
-                        <span class="badge badge-primary badge-outline">Excel</span>
-                        <span class="badge badge-primary badge-outline">SQL</span>
-                    </div>
-                </div>
-
-                <h3 class="text-2xl font-bold text-primary mb-6 pb-2 border-b-2 border-primary mt-12">Academic Projects (School-Enterprise Partnerships)</h3>
-
-                <!-- Academic Project 1 - New Chatbot Project -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">AI Chatbot Developer for Education</h3>
-                    <p class="text-lg text-primary mb-2">Île-de-France Region / Metapolis | Jan - Apr 2025 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Designed and implemented an intelligent chatbot using RAG architecture to provide information services for high schools in Île-de-France, in partnership with Metapolis and the regional government.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Achievements:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Developed a <span class="font-semibold">RAG (Retrieval-Augmented Generation)</span> system deployed via Ollama with <span class="font-semibold">Mistral and Llama3.1</span> models</li>
-                        <li>Integrated and analyzed a <span class="font-semibold">14GB Oracle database</span> using YData Profiling for data quality assessment</li>
-                        <li>Built an <span class="font-semibold">automatic SQL query generation</span> system from natural language questions (Python, LangChain)</li>
-                        <li>Created a <span class="font-semibold">Streamlit interface</span> with audio transcription and adjustable parameters</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">RAG Architecture</span>
-                        <span class="badge badge-primary badge-outline">LLMs (Mistral/Llama3)</span>
-                        <span class="badge badge-primary badge-outline">Oracle SQL</span>
-                        <span class="badge badge-primary badge-outline">LangChain</span>
-                        <span class="badge badge-primary badge-outline">Python</span>
-                        <span class="badge badge-primary badge-outline">Streamlit</span>
-                        <span class="badge badge-primary badge-outline">NLP</span>
-                    </div>
-                </div>
-
-                <!-- Academic Project 2 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Data Automation Engineer</h3>
-                    <p class="text-lg text-primary mb-2">Fairmat | Sep - Dec 2024 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Collaborated with Fairmat, a startup specializing in carbon fiber composite recycling, to develop an automated solution for web data collection and analysis to identify commercial opportunities.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Achievements:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Built a Python/Selenium web scraping pipeline collecting <span class="font-semibold">14,000+</span> product records from Amazon</li>
-                        <li>Cleaned and structured data, reducing duplicates by <span class="font-semibold">45%</span> with missing value management</li>
-                        <li>Developed an automatic categorization system based on keywords</li>
-                        <li>Created an enriched database (<span class="font-semibold">6,572</span> final records) ready for advanced analysis</li>
-                        <li>Visualized results to identify strategic segments and pricing opportunities</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">Python</span>
-                        <span class="badge badge-primary badge-outline">Selenium</span>
-                        <span class="badge badge-primary badge-outline">Web Scraping</span>
-                        <span class="badge badge-primary badge-outline">Data Cleaning</span>
-                    </div>
-                </div>
-
-                <!-- Academic Project 3 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Fashion Trend Analyst</h3>
-                    <p class="text-lg text-primary mb-2">Consult-Trends | Jan - Mar 2024 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Analyzed fashion datasets to detect trends and predict future developments in styles, colors, and materials.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Contributions:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Processed datasets with 10+ fashion characteristics (styles, colors, materials)</li>
-                        <li>Developed ARIMA models for trend forecasting</li>
-                        <li>Created interactive dashboards with Python and Power BI</li>
-                        <li>Presented findings to stakeholders</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">Time Series</span>
-                        <span class="badge badge-primary badge-outline">ARIMA</span>
-                        <span class="badge badge-primary badge-outline">Power BI</span>
-                    </div>
-                </div>
-
-                <!-- Academic Project 4 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Conversation Analysis Specialist</h3>
-                    <p class="text-lg text-primary mb-2">PITCHBOY | Sep - Dec 2023 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Analyzed sentiment in interactions between PITCHBOY's AI and users using video and textual data.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Contributions:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Preprocessed data and implemented pre-trained NLP models</li>
-                        <li>Developed Python analysis pipelines</li>
-                        <li>Integrated automatic language processing models</li>
-                        <li>Visualized insights to improve user experience</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">NLP</span>
-                        <span class="badge badge-primary badge-outline">Python</span>
-                        <span class="badge badge-primary badge-outline">Sentiment Analysis</span>
-                    </div>
-                </div>
-
-                <!-- Academic Project 5 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Multilingual Speech Corpus Creator</h3>
-                    <p class="text-lg text-primary mb-2">Atos | Jan - Mar 2023 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Created a multilingual (French/English) speech corpus in a university reception environment.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Contributions:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Selected recording environment with Atos (university setting with 2 speakers)</li>
-                        <li>Collected diverse audio data (multiple voices, ages, genders)</li>
-                        <li>Filtered, categorized and transcribed recordings</li>
-                        <li>Delivered fully documented corpus</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">NLP</span>
-                        <span class="badge badge-primary badge-outline">Data Collection</span>
-                        <span class="badge badge-primary badge-outline">Python</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 px-6 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-4">Personal Projects</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Open-source projects demonstrating my technical capabilities and problem-solving approach.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">Sentiment Analysis with BERT</h3>
-                        <p class="text-gray-600 mb-4">Implementation of a complete sentiment analysis pipeline using BERT</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Data extraction and preprocessing</li>
-                            <li>Model training and evaluation</li>
-                            <li>Deployable Python package</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">BERT</span>
-                            <span class="badge badge-primary badge-outline">NLP</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/sentiment-analysis-bert" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">Housing Market Clustering</h3>
-                        <p class="text-gray-600 mb-4">Analysis of real estate data using clustering algorithms</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>DBSCAN and K-Means implementation</li>
-                            <li>Price/size/location segmentation</li>
-                            <li>Strategic insights for stakeholders</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Clustering</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                            <span class="badge badge-primary badge-outline">Data Analysis</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/housing-cluster-analysis" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">AI Article Detector</h3>
-                        <p class="text-gray-600 mb-4">Classification system for AI-related news articles</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Web scraping for article collection</li>
-                            <li>BERT embeddings generation</li>
-                            <li>Logistic regression classifier</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Web Scraping</span>
-                            <span class="badge badge-primary badge-outline">BERT</span>
-                            <span class="badge badge-primary badge-outline">Classification</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/ai-article-detector" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">Bitcoin Price Prediction</h3>
-                        <p class="text-gray-600 mb-4">Time-series analysis with Facebook's Prophet</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Crypto market analysis</li>
-                            <li>Feature engineering</li>
-                            <li>Interactive forecasting</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Time Series</span>
-                            <span class="badge badge-primary badge-outline">Prophet</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/prophet-bitcoin-analysis" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">House Price Prediction</h3>
-                        <p class="text-gray-600 mb-4">Regression model for real estate valuation</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Feature-based price prediction</li>
-                            <li>Machine learning implementation</li>
-                            <li>Model evaluation and optimization</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Regression</span>
-                            <span class="badge badge-primary badge-outline">Machine Learning</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/house_price_prediction" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-16 px-6 bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Education</h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="timeline-item pl-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">BAC+5, Grande École Program (RNCP Level 7)</h3>
-                    <p class="text-lg text-primary mb-2">Aivancity School for Technology, Business & Society | 2022 - 2027</p>
-                    <p class="text-gray-700">Artificial Intelligence & Data Science</p>
-                </div>
-
-                <div class="timeline-item pl-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">BAC+3, Grande École Program</h3>
-                    <p class="text-lg text-primary mb-2">Aivancity School for Technology, Business & Society | 2022 - 2025</p>
-                </div>
-
-                <div class="timeline-item pl-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Baccalauréat Scientifique (Mention Bien)</h3>
-                    <p class="text-lg text-primary mb-2">Lycée Privée de Nzeng-Ayong, Gabon | 2021 - 2022</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 px-6 bg-primary text-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
-            
-            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-8 text-dark">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                                <span>ousmane.mombo@gmail.com</span>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <span>Cachan, Île-de-France, France</span>
-                            </div>
-                        </div>
-                        <div class="mt-8">
-                            <h3 class="text-xl font-semibold mb-4">Connect With Me</h3>
-                            <div class="flex space-x-4">
-                                <a href="https://www.linkedin.com/in/ousmane-mombo-mombo/" target="_blank" class="btn btn-circle bg-primary hover:bg-primary-dark border-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                    </svg>
-                                </a>
-                                <a href="https://github.com/OusmaneMomboMombo" target="_blank" class="btn btn-circle bg-primary hover:bg-primary-dark border-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Download My CV</h3>
-                        <p class="mb-6">For a comprehensive overview of my skills and experience, download my full resume:</p>
-                        <a href="CV_Alternance_Ousmane_MOMBO_MOMBO_Data_Scientist_v2.0.pdf" download class="btn bg-primary hover:bg-primary-dark text-white w-full">
-                            Download CV (PDF)
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-6 bg-primary-dark text-white text-center">
-        <div class="container mx-auto">
-            <p>© 2025 Ousmane MOMBO MOMBO. All rights reserved.</p>
-        </div>
+    <footer>
+        <p>© 2025 Yann DE NZOGHE. Tous droits réservés.</p>
     </footer>
-</body>
-</html><!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ousmane MOMBO MOMBO | Data Scientist & AI Engineer</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#2563EB',      // Professional blue (matches CV)
-                        'primary-dark': '#1E40AF', 
-                        'accent': '#10B981',       // Green for highlights
-                        'dark': '#1F2937',         // Dark text
-                        'light': '#F9FAFB'          // Light background
-                    },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
+    // Traductions (version consolidée)
+    const translations = {
+        fr: {
+            home: "Accueil",
+            about: "À propos",
+            contact: "Contact",
+            welcome: "Bienvenue",
+            intro1: "Je suis Yann DE NZOGHE, étudiant en Master 1 en Intelligence Artificielle et Sciences des données à Aivancity Paris-Cachan.",
+            intro2: "Ce portfolio présente mes projets, certifications, formations, compétences, et comment me contacter si mon profil vous intéresse.",
+            experience_title: "Expériences professionnelles",
+            education: "Formation",
+            master_title: "Master BAC +5 en Intelligence Artificielle et Sciences des données",
+            master_1: "Diplôme en cours avec une formation approfondie en analyse de données et Intelligence Artificielle",
+            master_2: "Projets pratiques axés sur l'analyse de données et la modélisation prédictive",
+            bac_title: "Baccalauréat scientifique, spécialité mathématiques et physique",
+            bac_mention: "Mention Bien",
+            bac_project: "Projets en analyse de données et statistiques",
+            rights: "Tous droits réservés."
+        },
+        en: {
+            home: "Home",
+            about: "About",
+            contact: "Contact",
+            welcome: "Welcome",
+            intro1: "I'm Yann DE NZOGHE, a Master's student in AI and Data Science at Aivancity Paris-Cachan.",
+            intro2: "This portfolio presents my projects, certifications, education, skills, and how to contact me if you're interested in my profile.",
+            experience_title: "Professional Experience",
+            education: "Education",
+            master_title: "Master's Degree in AI and Data Science (BAC +5)",
+            master_1: "Ongoing degree with deep training in data analysis and Artificial Intelligence",
+            master_2: "Practical projects focused on data analysis and predictive modeling",
+            bac_title: "Scientific Baccalauréat, Math & Physics specialization",
+            bac_mention: "Honors: Bien",
+            bac_project: "Projects in data analysis and statistics",
+            rights: "All rights reserved."
+        }
+    };
+
+    // Gestionnaire de langue (optimisé)
+    function setupLanguageSelector() {
+        const selector = document.getElementById("languageSelector");
+        if (selector) {
+            selector.addEventListener("change", changeLanguage);
+        }
+    }
+
+    function changeLanguage() {
+         const selector = document.getElementById("languageSelector");
+        selector.addEventListener("change", changeLanguage);
+
+        function changeLanguage() {
+            const lang = selector.value;
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                el.textContent = translations[lang][key];
+            });
+        }
+    }
+     
+
+    // Navigation fluide et highlight
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling pour les liens d'ancrage
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Ajustez selon la hauteur de votre header
+                            behavior: 'smooth'
+                        });
                     }
+                });
+            });
+
+            // Highlight de la section active
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.header-nav a');
+
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Active la première section au chargement
+            if (window.location.hash) {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'auto'
+                    });
                 }
             }
-        }
+        });
+        
+
+      
+      
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #F9FAFB;
-        }
-        .profile-pic {
-            border: 4px solid #2563EB;
-            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
-        }
-        .skill-badge {
-            transition: all 0.3s ease;
-        }
-        .skill-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 2.5rem;
-            border-left: 3px solid #2563EB;
-            margin-bottom: 2rem;
-        }
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: -0.75rem;
-            top: 0;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            background: #2563EB;
-            border: 3px solid white;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .experience-card {
-            transition: all 0.3s ease;
-        }
-        .experience-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="navbar fixed top-0 left-0 right-0 z-50 bg-white shadow-lg px-6">
-        <div class="flex-1">
-            <a href="#" class="text-xl font-bold text-primary">Ousmane MOMBO MOMBO</a>
-        </div>
-        <div class="flex-none hidden lg:block">
-            <ul class="menu menu-horizontal space-x-2">
-                <li><a href="#about" class="text-dark hover:text-primary font-medium">About</a></li>
-                <li><a href="#skills" class="text-dark hover:text-primary font-medium">Skills</a></li>
-                <li><a href="#experience" class="text-dark hover:text-primary font-medium">Experience</a></li>
-                <li><a href="#projects" class="text-dark hover:text-primary font-medium">Projects</a></li>
-                <li><a href="#education" class="text-dark hover:text-primary font-medium">Education</a></li>
-                <li><a href="#contact" class="text-dark hover:text-primary font-medium">Contact</a></li>
-            </ul>
-        </div>
-        <div class="flex-none lg:hidden">
-            <label for="mobile-menu" class="btn btn-square btn-ghost">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </label>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <input type="checkbox" id="mobile-menu" class="drawer-toggle">
-    <div class="drawer-side z-50">
-        <label for="mobile-menu" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 h-full bg-white text-dark">
-            <li class="mt-16 mb-4">
-                <a href="#about" class="font-medium text-lg">About</a>
-            </li>
-            <li class="mb-4">
-                <a href="#skills" class="font-medium text-lg">Skills</a>
-            </li>
-            <li class="mb-4">
-                <a href="#experience" class="font-medium text-lg">Experience</a>
-            </li>
-            <li class="mb-4">
-                <a href="#projects" class="font-medium text-lg">Projects</a>
-            </li>
-            <li class="mb-4">
-                <a href="#education" class="font-medium text-lg">Education</a>
-            </li>
-            <li class="mb-4">
-                <a href="#contact" class="font-medium text-lg">Contact</a>
-            </li>
-            <li>
-                <a href="CV_Alternance_Ousmane_MOMBO_MOMBO_Data_Scientist_v2.0.pdf" download class="btn bg-primary hover:bg-primary-dark text-white mt-4">Download CV</a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="about" class="pt-24 pb-16 px-6">
-        <div class="container mx-auto">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/3 flex justify-center animate_animated animate_fadeIn">
-                    <div class="profile-pic w-64 h-64 rounded-full overflow-hidden animate-float">
-                        <img src="profile-pic.jpeg" alt="Ousmane MOMBO MOMBO" class="w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="lg:w-2/3 animate_animated animatefadeIn animate_delay-1s">
-                    <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">Ousmane MOMBO MOMBO</h1>
-                    <h2 class="text-2xl md:text-3xl text-primary mb-6">Data Scientist & AI Engineer</h2>
-                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                        👋 Hello, I'm Ousmane MOMBO MOMBO, a 3rd-year student at Aivancity School for Technology, Business & Society, enrolled in the Grande École program recognized by the French government. I'm pursuing an Advanced Degree in Artificial Intelligence and Data Science with the goal of designing innovative technological solutions that align with business strategic needs while incorporating impact, sustainability, and ethical considerations.
-                    </p>
-                    <div class="flex flex-wrap gap-4 mb-8">
-                        <a href="#contact" class="btn bg-primary hover:bg-primary-dark text-white px-8">Contact Me</a>
-                        <a href="CV_Alternance_Ousmane_MOMBO_MOMBO_Data_Scientist_v2.0.pdf" download class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-white px-8">Download CV</a>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="https://www.linkedin.com/in/ousmane-mombo-mombo/" target="_blank" class="text-primary hover:text-primary-dark transition-colors duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/OusmaneMomboMombo" target="_blank" class="text-primary hover:text-primary-dark transition-colors duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-white px-6">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Technical Skills</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Advanced Techniques -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Advanced Techniques</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge badge badge-primary badge-lg">Machine Learning</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Deep Learning</span>
-                        <span class="skill-badge badge badge-primary badge-lg">NLP</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Time Series Analysis</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Web Scraping</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Automation</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Processing</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Analysis</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Data Visualization</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Dimensionality Reduction</span>
-                        <span class="skill-badge badge badge-primary badge-lg">PCA</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Cloud Computing</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Big Data</span>
-                        <span class="skill-badge badge badge-primary badge-lg">RAG Architecture</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Deployment</span>
-                    </div>
-                </div>
-
-                <!-- Languages & Tools -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Languages & Tools</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge badge badge-primary badge-lg">Python</span>
-                        <span class="skill-badge badge badge-primary badge-lg">SQL</span>
-                        <span class="skill-badge badge badge-primary badge-lg">R</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Power BI</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Excel</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Git</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Pandas</span>
-                        <span class="skill-badge badge badge-primary badge-lg">NumPy</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Seaborn</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Matplotlib</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Scikit-learn</span>
-                        <span class="skill-badge badge badge-primary badge-lg">TensorFlow</span>
-                        <span class="skill-badge badge badge-primary badge-lg">PyTorch</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Transformers</span>
-                        <span class="skill-badge badge badge-primary badge-lg">SciPy</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Statsmodels</span>
-                        <span class="skill-badge badge badge-primary badge-lg">BeautifulSoup</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Selenium</span>
-                        <span class="skill-badge badge badge-primary badge-lg">Streamlit</span>
-                    </div>
-                </div>
-                <!-- Soft Skills -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Soft Skills</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge badge badge-accent badge-lg">Analytical Mindset</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Interpersonal Skills</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Critical Thinking</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Team Spirit</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Rigor</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Autonomy</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Adaptability</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Flexibility</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Creativity</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Curiosity</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Oral Communication</span>
-                        <span class="skill-badge badge badge-accent badge-lg">Presentation Skills</span>
-                        <span class="skill-badge badge badge-accent badge-lg">AI Ethics</span>
-                    </div>
-                </div>
-
-                <!-- Languages -->
-                <div class="bg-light rounded-xl p-6 shadow-md">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Languages</h3>
-                    <div class="flex flex-col gap-4">
-                        <div>
-                            <span class="font-medium">French: Native</span>
-                        </div>
-                        <div>
-                            <span class="font-medium">English: B2 (Intermediate)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-16 px-6 bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Professional Experience</h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <h3 class="text-2xl font-bold text-primary mb-6 pb-2 border-b-2 border-primary">Internships</h3>
-                
-                <!-- Internship 1 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Data Scientist Intern</h3>
-                    <p class="text-lg text-primary mb-2">Energie Pro Export | Jul - Sep 2024 | Louveciennes, France (Hybrid)</p>
-                    <p class="text-gray-700 mb-4">
-                        During this 9-week internship at Energie Pro Export, a SME specializing in construction materials distribution, I applied my data analysis skills to optimize commercial operations and inventory management.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Achievements:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Conducted in-depth inventory data analysis to identify overstocked or obsolete products</li>
-                        <li>Developed a predictive restocking model based on historical sales, reducing storage costs by <span class="font-semibold">10%</span></li>
-                        <li>Adjusted restocking thresholds to prevent shortages</li>
-                        <li>Created interactive dashboards in Python and Excel for real-time sales and inventory tracking</li>
-                        <li>Reduced time spent on manual data collection and analysis by <span class="font-semibold">50%</span></li>
-                        <li>Identified underperforming products to adjust sales strategies</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">Python</span>
-                        <span class="badge badge-primary badge-outline">Excel</span>
-                        <span class="badge badge-primary badge-outline">Data Analysis</span>
-                        <span class="badge badge-primary badge-outline">Power BI</span>
-                        <span class="badge badge-primary badge-outline">Power Query</span>
-                    </div>
-                </div>
-
-                <!-- Internship 2 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Junior AI Consultant Intern</h3>
-                    <p class="text-lg text-primary mb-2">Alliance Experts | Jul - Sep 2023 | Clamart, France (On-site)</p>
-                    <p class="text-gray-700 mb-4">
-                        Contributed to designing an AI project to improve automotive expertise efficiency, focusing on reducing claims processing time.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Responsibilities:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Defined key objectives including a <span class="font-semibold">30% reduction</span> in processing time</li>
-                        <li>Designed features for an intelligent virtual assistant</li>
-                        <li>Identified essential AI functional requirements for the project</li>
-                        <li>Analyzed data and optimized business processes</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">AI Consulting</span>
-                        <span class="badge badge-primary badge-outline">Process Optimization</span>
-                        <span class="badge badge-primary badge-outline">Excel</span>
-                        <span class="badge badge-primary badge-outline">SQL</span>
-                    </div>
-                </div>
-
-                <h3 class="text-2xl font-bold text-primary mb-6 pb-2 border-b-2 border-primary mt-12">Academic Projects (School-Enterprise Partnerships)</h3>
-                
-                <!-- Academic Project 1 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Data Automation Engineer</h3>
-                    <p class="text-lg text-primary mb-2">Fairmat | Sep - Dec 2024 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Collaborated with Fairmat, a startup specializing in carbon fiber composite recycling, to develop an automated solution for web data collection and analysis to identify commercial opportunities.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Achievements:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Built a Python/Selenium web scraping pipeline collecting <span class="font-semibold">14,000+</span> product records from Amazon</li>
-                        <li>Cleaned and structured data, reducing duplicates by <span class="font-semibold">45%</span> with missing value management</li>
-                        <li>Developed an automatic categorization system based on keywords</li>
-                        <li>Created an enriched database (<span class="font-semibold">6,572</span> final records) ready for advanced analysis</li>
-                        <li>Visualized results to identify strategic segments and pricing opportunities</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">Python</span>
-                        <span class="badge badge-primary badge-outline">Selenium</span>
-                        <span class="badge badge-primary badge-outline">Web Scraping</span>
-                        <span class="badge badge-primary badge-outline">Data Cleaning</span>
-                    </div>
-                </div>
-
-                <!-- Academic Project 2 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Fashion Trend Analyst</h3>
-                    <p class="text-lg text-primary mb-2">Consult-Trends | Jan - Mar 2024 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Analyzed fashion datasets to detect trends and predict future developments in styles, colors, and materials.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Contributions:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Processed datasets with 10+ fashion characteristics (styles, colors, materials)</li>
-                        <li>Developed ARIMA models for trend forecasting</li>
-                        <li>Created interactive dashboards with Python and Power BI</li>
-                        <li>Presented findings to stakeholders</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">Time Series</span>
-                        <span class="badge badge-primary badge-outline">ARIMA</span>
-                        <span class="badge badge-primary badge-outline">Power BI</span>
-                    </div>
-                </div>
-
-                <!-- Academic Project 3 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Conversation Analysis Specialist</h3>
-                    <p class="text-lg text-primary mb-2">PITCHBOY | Sep - Dec 2023 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Analyzed sentiment in interactions between PITCHBOY's AI and users using video and textual data.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Contributions:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Preprocessed data and implemented pre-trained NLP models</li>
-                        <li>Developed Python analysis pipelines</li>
-                        <li>Integrated automatic language processing models</li>
-                        <li>Visualized insights to improve user experience</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">NLP</span>
-                        <span class="badge badge-primary badge-outline">Python</span>
-                        <span class="badge badge-primary badge-outline">Sentiment Analysis</span>
-                    </div>
-                </div>
-
-                <!-- Academic Project 4 -->
-                <div class="experience-card bg-white rounded-xl shadow-lg p-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Multilingual Speech Corpus Creator</h3>
-                    <p class="text-lg text-primary mb-2">Atos | Jan - Mar 2023 | Paris, France</p>
-                    <p class="text-gray-700 mb-4">
-                        Created a multilingual (French/English) speech corpus in a university reception environment.
-                    </p>
-                    <h4 class="text-lg font-semibold text-dark mb-2">Key Contributions:</h4>
-                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                        <li>Selected recording environment with Atos (university setting with 2 speakers)</li>
-                        <li>Collected diverse audio data (multiple voices, ages, genders)</li>
-                        <li>Filtered, categorized and transcribed recordings</li>
-                        <li>Delivered fully documented corpus</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-primary badge-outline">NLP</span>
-                        <span class="badge badge-primary badge-outline">Data Collection</span>
-                        <span class="badge badge-primary badge-outline">Python</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 px-6 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-4">Personal Projects</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Open-source projects demonstrating my technical capabilities and problem-solving approach.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">Sentiment Analysis with BERT</h3>
-                        <p class="text-gray-600 mb-4">Implementation of a complete sentiment analysis pipeline using BERT</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Data extraction and preprocessing</li>
-                            <li>Model training and evaluation</li>
-                            <li>Deployable Python package</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">BERT</span>
-                            <span class="badge badge-primary badge-outline">NLP</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/sentiment-analysis-bert" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">Housing Market Clustering</h3>
-                        <p class="text-gray-600 mb-4">Analysis of real estate data using clustering algorithms</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>DBSCAN and K-Means implementation</li>
-                            <li>Price/size/location segmentation</li>
-                            <li>Strategic insights for stakeholders</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Clustering</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                            <span class="badge badge-primary badge-outline">Data Analysis</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/housing-cluster-analysis" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">AI Article Detector</h3>
-                        <p class="text-gray-600 mb-4">Classification system for AI-related news articles</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Web scraping for article collection</li>
-                            <li>BERT embeddings generation</li>
-                            <li>Logistic regression classifier</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Web Scraping</span>
-                            <span class="badge badge-primary badge-outline">BERT</span>
-                            <span class="badge badge-primary badge-outline">Classification</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/ai-article-detector" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">Bitcoin Price Prediction</h3>
-                        <p class="text-gray-600 mb-4">Time-series analysis with Facebook's Prophet</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Crypto market analysis</li>
-                            <li>Feature engineering</li>
-                            <li>Interactive forecasting</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Time Series</span>
-                            <span class="badge badge-primary badge-outline">Prophet</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/prophet-bitcoin-analysis" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2">House Price Prediction</h3>
-                        <p class="text-gray-600 mb-4">Regression model for real estate valuation</p>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
-                            <li>Feature-based price prediction</li>
-                            <li>Machine learning implementation</li>
-                            <li>Model evaluation and optimization</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge badge-primary badge-outline">Regression</span>
-                            <span class="badge badge-primary badge-outline">Machine Learning</span>
-                            <span class="badge badge-primary badge-outline">Python</span>
-                        </div>
-                        <a href="https://github.com/OusmaneMomboMombo/house_price_prediction" target="_blank" class="btn btn-sm bg-primary hover:bg-primary-dark text-white mt-4">View on GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-16 px-6 bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Education</h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="timeline-item pl-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">BAC+5, Grande École Program (RNCP Level 7)</h3>
-                    <p class="text-lg text-primary mb-2">Aivancity School for Technology, Business & Society | 2022 - 2027</p>
-                    <p class="text-gray-700">Artificial Intelligence & Data Science</p>
-                </div>
-
-                <div class="timeline-item pl-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">BAC+3, Grande École Program</h3>
-                    <p class="text-lg text-primary mb-2">Aivancity School for Technology, Business & Society | 2022 - 2025</p>
-                </div>
-
-                <div class="timeline-item pl-8">
-                    <h3 class="text-2xl font-bold text-dark mb-1">Baccalauréat Scientifique (Mention Bien)</h3>
-                    <p class="text-lg text-primary mb-2">Lycée Privée de Nzeng-Ayong, Gabon | 2021 - 2022</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 px-6 bg-primary text-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
-            
-            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-8 text-dark">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                                <span>ousmane.mombo@gmail.com</span>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <span>Cachan, Île-de-France, France</span>
-                            </div>
-                        </div>
-                        <div class="mt-8">
-                            <h3 class="text-xl font-semibold mb-4">Connect With Me</h3>
-                            <div class="flex space-x-4">
-                                <a href="https://www.linkedin.com/in/ousmane-mombo-mombo/" target="_blank" class="btn btn-circle bg-primary hover:bg-primary-dark border-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                    </svg>
-                                </a>
-                                <a href="https://github.com/OusmaneMomboMombo" target="_blank" class="btn btn-circle bg-primary hover:bg-primary-dark border-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Download My CV</h3>
-                        <p class="mb-6">For a comprehensive overview of my skills and experience, download my full resume:</p>
-                        <a href="CV_Alternance_Ousmane_MOMBO_MOMBO_Data_Scientist_v2.0.pdf" download class="btn bg-primary hover:bg-primary-dark text-white w-full">
-                            Download CV (PDF)
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-6 bg-primary-dark text-white text-center">
-        <div class="container mx-auto">
-            <p>© 2025 Ousmane MOMBO MOMBO. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>
