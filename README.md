@@ -43,7 +43,7 @@ Chatbot capable de traduire les questions d’utilisateurs en requêtes SQL sur 
 ---
 
 ## 📫 Me contacter
-- 📧 **Email** : [votre.email@example.com](mailto:yannoel2002@gmail.com)
+- 📧 **Email** : [Mon-mail](mailto:yannoel2002@gmail.com)
 - 💼 **LinkedIn** : [Mon profil]([https://www.linkedin.com/in/ton-lien](https://www.linkedin.com/in/yann-de-nzoghe/))
 - 🐙 **GitHub** : [Mes projets](https://github.com/Yannozghe)
 
